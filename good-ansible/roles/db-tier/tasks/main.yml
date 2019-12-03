@@ -1,0 +1,22 @@
+---
+- name: install progress
+  command: "yum install -y postgresql-server"
+
+- name: enable postgresql at boot
+  service:
+    name: postgresql
+    enabled: yes
+
+- name: STAT PG_Version
+  stat: 
+    path: "{{ pgf }}"
+  register: output
+- name: init "{{ payload }}"
+  command: postgresql-setup initdb
+  when: not output.stat.exists
+
+- name: start postgres
+  service:
+    name: postgresql.service
+    state: started
+

@@ -1,0 +1,3 @@
+payload_name: http
+payload_package: httpie
+payload_service: haproxy
