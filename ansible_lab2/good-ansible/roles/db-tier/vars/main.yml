@@ -1,0 +1,3 @@
+payload:          postgresql
+payload_service:  postgresql.service
+pgf: /var/lib/pgsql/data/PG_VERSION

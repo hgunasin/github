@@ -1,0 +1,18 @@
+- hosts: jumpbox
+  gather_facts: false
+  tasks:
+  - name: List instances
+    os_server_facts:
+      cloud: ospcloud
+    register: output
+  - name: generate inventory
+    add_host:
+      group: "{{ item.metadata.group }}"
+      name: "{{ item.public_v4 }}"
+    loop:  "{{ output.ansible_facts.openstack_servers }}"
+    
+
+- hosts: db
+  gather_facts: false
+  tasks:
+  - ping:
