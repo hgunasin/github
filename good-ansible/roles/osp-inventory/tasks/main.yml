@@ -1,0 +1,12 @@
+---
+# tasks file for roles/osp-inventory
+- name: List instances
+  os_server_facts:
+    cloud: ospcloud
+  register: output
+- name: generate inventory
+  add_host:
+    group: "{{ item.metadata.group }}"
+    name: "{{ item.public_v4 }}"
+  loop:  "{{ output.ansible_facts.openstack_servers }}"
+
