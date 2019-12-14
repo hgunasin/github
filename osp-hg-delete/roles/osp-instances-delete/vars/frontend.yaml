@@ -1,0 +1,7 @@
+---
+instance_name: frontend
+group: frontend
+deployment: QA
+security_group_name: frontend
+
+
